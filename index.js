@@ -64,7 +64,6 @@ function first(array, number)
         
     if (Array.isArray(array))
     {
-        
         for (var i = 0; i < number; i++)
         {
             retArray.push(array[i]);
@@ -75,7 +74,6 @@ function first(array, number)
     {
         return [];
     }
-    
 }
 
 
@@ -182,7 +180,7 @@ function each(collection, func)
 
 /**
  * unique: Designed to go through an array and remove all duplicates, it then returns the resulting array
- * 
+ * as a new array
  * @param {array} value: can be any array
  * 
  * @return {array} value: returns an array containing every value in array with the duplicates removed
@@ -200,7 +198,9 @@ function unique(array)
     return retArray;
 }
 /**
- * filter: Designed to filter all elements in an array based off a function that is passed in 
+ * filter: Designed to filter all elements in an array based off a function that is passed in
+ * is called on every element in the array using the each function. Within the function is a 
+ * conditional that will tell whether or not each element should be in the new array or not
  * 
  * @param {array} value: can be any array
  * @param {func} value: can be any function
@@ -221,6 +221,8 @@ function filter(array, func)
 }
 /**
  * reject: Designed to take an array and a function and filter the elements in <array> using func
+ * func contains a conditional that checks if the element in the array meets a certain criteria 
+ * and adds it to the new array otherwise it is skiped and we go to the next element 
  * 
  * @param {array} value: can be any array
  * @param {func} value: can be any function
@@ -306,7 +308,7 @@ function map(collection, func)
  * in <objArray> 
  * 
  * @param {objArray} value: an array of objects
- * @param {property} value: an object property
+ * @param {property} value: an string that represents an object property key
  * 
  * @return {an array} returns an array that contains the value of every property for every object
  **/
@@ -320,7 +322,9 @@ function pluck(objArray, property)
 /**
  * every: Designed to take a collection and a function it then compares the values obtained from 
  * running <func> against all elmements in the collection it returns true if all elements pass
- * false if at least one element in the collection fails the test
+ * false if at least one element in the collection fails the test if no callback function is passed in 
+ * it checks the truthy values of the collection returning false if at least one element in the array
+ * is false otherwise, it returns true;
  * 
  * @param {collection} value: can be an object or an array
  * @param {func} value: any function
@@ -368,7 +372,9 @@ function every(collection, func)
 /**
  * some: Designed to take a collection and a function and return a boolean value of 
  * true if at least one element in the collection passes the test if no elements in 
- * the collection pass the test then the function will return false
+ * the collection pass the test then the function will return false if no callback 
+ * function is givin then some checks the truthy and falsy values of each element within the 
+ * collection returning true if at least one is found to be true else it returns fasle
  * 
  * @param {collection} value: can by any array or object
  * @param {func} value: can be any function
@@ -416,7 +422,9 @@ function some(collection, func)
 
 /**
  * reduce: Designed to take an array a function and a seed it then runs <func> on the
- * entire array it then returns the result 
+ * entire array it then returns the result which will be whatever datatype that you start off 
+ * with by default. However if a seed is givin the reduction will take on the datatype of that
+ * seed
  * 
  * @param {array} value: any array with values
  * @param {func} value: any function
@@ -462,7 +470,7 @@ function reduce(array, func, seed)
 /**
  * extend: Designed to take a variable number of object arguments it then assigns the 
  * elements in every object to the first object and returns an object containing the 
- * properties of every object
+ * properties of every object 
  * 
  * @param {obj1} value: the first object
  * @param {obj2} value: the second object
@@ -507,5 +515,5 @@ function each(collection, action) {
     }
 }
 module.exports.each = each;
-
+module.exports.filter = filter;
 
