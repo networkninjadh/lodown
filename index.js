@@ -39,6 +39,10 @@ function typeOf(value)
 }
 /**
  * first: Designed to return the first <number> of elements in the array
+ * if number is not a number then we return the first element in the array
+ * if number is negative we return the empty array
+ * if number is greater than the length of the array then we return the entire array
+ * if array is not an array we return the empty array
  * 
  * @param {array} value: an array
  * @param {number} value: a non negative integer number
@@ -80,6 +84,10 @@ function first(array, number)
 /**
  * last: Designed to take an array and a number then function then returns an array
  * containing the last <number> elements in the array
+ * if number is not a number then we return the last element in the array
+ * if number is negative we return the empty array
+ * if number is greater than the length of the array then we return the entire array
+ * if array is not an array then we return the empty array 
  * 
  * @param {array} value: an array containing values
  * @param {number} value: a non negative integer number
@@ -121,7 +129,7 @@ function last(array, number)
  * @param {array} value: array is an array of any values
  * @param {value} value: a value givin to search for in the array
  * 
- * @return {index, -1} returns the index within the array where value is found
+ * @return {number} returns the index within the array where value is found -1 if it doesn't exist
  **/
 function indexOf(array, value)
 {
@@ -183,7 +191,7 @@ function each(collection, func)
  * as a new array
  * @param {array} value: can be any array
  * 
- * @return {array} value: returns an array containing every value in array with the duplicates removed
+ * @return {array} value: returns a new array containing every value in array with the duplicates removed
  **/
 function unique(array)
 {
@@ -199,8 +207,9 @@ function unique(array)
 }
 /**
  * filter: Designed to filter all elements in an array based off a function that is passed in
- * is called on every element in the array using the each function. Within the function is a 
- * conditional that will tell whether or not each element should be in the new array or not
+ * is called on every element in the array using the each function. The each function runs the callback
+ * function for every element of the array since the callback function returns a boolean value we can 
+ * put it in an if statement and decide which elements are pushed into the new array
  * 
  * @param {array} value: can be any array
  * @param {func} value: can be any function
@@ -223,9 +232,10 @@ function filter(array, func)
  * reject: Designed to take an array and a function and filter the elements in <array> using func
  * func contains a conditional that checks if the element in the array meets a certain criteria 
  * and adds it to the new array otherwise it is skiped and we go to the next element 
+ * the elements are filtered according to the condition within the func callback function
  * 
  * @param {array} value: can be any array
- * @param {func} value: can be any function
+ * @param {function} value: can be any function
  * 
  * @return {array} returns a new array that is the filtered version of <array>
  **/
@@ -241,7 +251,6 @@ function reject(array, func)
         }
     }
     return retArray;
-
 }
 
 /**
@@ -307,10 +316,10 @@ function map(collection, func)
  * pluck: Designed to return an array containing the value of every <property> for every element 
  * in <objArray> 
  * 
- * @param {objArray} value: an array of objects
- * @param {property} value: an string that represents an object property key
+ * @param {array} objArray value: an array of objects
+ * @param {string} property value: an string that represents an object property key
  * 
- * @return {an array} returns an array that contains the value of every property for every object
+ * @return {array} returns an array that contains the value of every property for every object
  **/
 function pluck(objArray, property)
 {
